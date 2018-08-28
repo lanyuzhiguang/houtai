@@ -9,6 +9,9 @@ const fetch = {
   get(url, data, config) {
     return new Promise((resolve,reject)=>{
       instance.get(url,{params:data},config).then(res=>{
+        if(res.data.code==401){
+          router.push('/')
+        }
         resolve(res.data)
       }).catch(err=>{
         reject(err)
